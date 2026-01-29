@@ -19,7 +19,7 @@ export class ProductManagementDB extends cdk.Stack {
       this,
       `${this.stackName}-Products-Images-Bucket`,
       {
-        bucketName: `${this.stackName.toLocaleLowerCase()}-Products-Images`,
+        bucketName: `${this.stackName.toLocaleLowerCase()}-products-images`,
         removalPolicy: cdk.RemovalPolicy.DESTROY,
         autoDeleteObjects: true,
       },
