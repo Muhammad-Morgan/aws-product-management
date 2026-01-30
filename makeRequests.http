@@ -5,7 +5,7 @@ POST {{URL}}/products
 Content-Type: application/json
 
 {
-    "name": "Product 1"
+    "name": "Product 01"
 }
 
 ### Get All Products

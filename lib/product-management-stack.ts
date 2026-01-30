@@ -101,20 +101,20 @@ export class ProductManagementStack extends cdk.Stack {
       ),
     });
     // print out url, products table name and product images bucket
-    new cdk.CfnOutput(this, "ApiGatewayUrl", {
-      value: api.url!,
-      description: "Api Gateway URL for the products",
-      exportName: `${this.stackName}-ApiGatewayUrl`,
-    });
-    new cdk.CfnOutput(this, "ProductsTableName", {
-      value: props.dynamodbStack.productsTableRN.tableName,
-      description: "DynamoDB products table name",
-      exportName: `${this.stackName}-ProductsTableName`,
-    });
-    new cdk.CfnOutput(this, "ProductsImagesBucketName", {
-      value: props.dynamodbStack.productImagesBucket.bucketName,
-      description: "S3 Bucket products Images",
-      exportName: `${this.stackName}-ProductsImagesBucketName`,
-    });
+    // new cdk.CfnOutput(this, "ApiGatewayUrl", {
+    //   value: api.url!,
+    //   description: "Api Gateway URL for the products",
+    //   exportName: `${this.stackName}-ApiGatewayUrl`,
+    // });
+    // new cdk.CfnOutput(this, "ProductsTableName", {
+    //   value: props.dynamodbStack.productsTableRN.tableName,
+    //   description: "DynamoDB products table name",
+    //   exportName: `${this.stackName}-ProductsTableName`,
+    // });
+    // new cdk.CfnOutput(this, "ProductsImagesBucketName", {
+    //   value: props.dynamodbStack.productImagesBucket.bucketName,
+    //   description: "S3 Bucket products Images",
+    //   exportName: `${this.stackName}-ProductsImagesBucketName`,
+    // });
   }
 }

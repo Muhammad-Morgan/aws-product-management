@@ -20,7 +20,7 @@ export class ProductManagementDB extends cdk.Stack {
       this,
       `${this.stackName}-Products-Images-Bucket`,
       {
-        bucketName: `${this.stackName.toLocaleLowerCase()}-products-images`,
+        bucketName: `${this.stackName.toLowerCase()}-products-images`,
         removalPolicy: cdk.RemovalPolicy.DESTROY,
         autoDeleteObjects: true,
         //better approach
@@ -37,7 +37,7 @@ export class ProductManagementDB extends cdk.Stack {
         effect: iam.Effect.ALLOW,
         principals: [new iam.AnyPrincipal()],
         actions: ["s3:GetObject"],
-        resources: [`${this.productImagesBucket}/products/*`],
+        resources: [`${this.productImagesBucket.bucketArn}/products/*`],
       }),
     );
   }
