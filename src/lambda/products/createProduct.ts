@@ -12,7 +12,7 @@ const s3Client = new S3Client({});
 
 // Environment variables
 const PRODUCTS_TABLE_NAME = process.env.PRODUCTS_TABLE_NAME!;
-const PRODUCT_IMAGES_BUCKET_NAME = process.env.PRODUCT_IMAGES_BUCKET_NAME!;
+const PRODUCT_IMAGES_BUCKET_NAME = process.env.PRODUCTS_IMAGES_BUCKET_NAME!;
 
 export async function handler(
   event: APIGatewayProxyEventV2,
