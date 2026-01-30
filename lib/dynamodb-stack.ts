@@ -1,6 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 import * as s3 from "aws-cdk-lib/aws-s3";
+import * as iam from "aws-cdk-lib/aws-iam";
 export class ProductManagementDB extends cdk.Stack {
   public readonly productsTableRN: dynamodb.Table; // for lambda to access tableName and other stuff.
   public readonly productImagesBucket: s3.Bucket; // for lambda blah blah blah...
@@ -22,7 +23,22 @@ export class ProductManagementDB extends cdk.Stack {
         bucketName: `${this.stackName.toLocaleLowerCase()}-products-images`,
         removalPolicy: cdk.RemovalPolicy.DESTROY,
         autoDeleteObjects: true,
+        //better approach
+        blockPublicAccess: new s3.BlockPublicAccess({
+          blockPublicAcls: true,
+          blockPublicPolicy: false,
+          ignorePublicAcls: true,
+          restrictPublicBuckets: false,
+        }),
       },
+    );
+    this.productImagesBucket.addToResourcePolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        principals: [new iam.AnyPrincipal()],
+        actions: ["s3:GetObject"],
+        resources: [`${this.productImagesBucket}/products/*`],
+      }),
     );
   }
 }
