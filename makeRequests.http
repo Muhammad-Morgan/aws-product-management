@@ -12,4 +12,4 @@ Content-Type: application/json
 GET {{URL}}/products
 
 ### Delete Product
-DELETE {{URL}}/products/1
+DELETE {{URL}}/products/8129dfd7-f8a5-4816-b7a4-0dccd40817c8
