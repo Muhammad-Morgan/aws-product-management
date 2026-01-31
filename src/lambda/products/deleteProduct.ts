@@ -23,11 +23,12 @@ export async function handler(
   console.log("Delete Event", event);
   try {
     const productId = event.pathParameters?.id; // this is how you get the params
-    if (!productId)
+    if (!productId) {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: "product ID is required..." }),
       };
+    }
     // getting the item from the table
     let product: ProdctRecord;
     try {
@@ -37,11 +38,12 @@ export async function handler(
           Key: { id: productId },
         }),
       );
-      if (!getResult)
+      if (!getResult) {
         return {
           statusCode: 404,
           body: JSON.stringify({ message: "product not found" }),
         };
+      }
       product = getResult.Item as ProdctRecord;
     } catch (dynamoError: any) {
       console.error("Error retrieving product from dynamoDB", dynamoError);
@@ -51,9 +53,9 @@ export async function handler(
       };
     }
     // getting image from s3
-    if (product?.imageUrl) {
+    if (product.imageUrl) {
       try {
-        const urlParts = product?.imageUrl.split("/");
+        const urlParts = product.imageUrl.split("/");
         const s3Key = urlParts.slice(3).join("/");
         await s3Client.send(
           new DeleteObjectCommand({
