@@ -38,7 +38,7 @@ export async function handler(
           Key: { id: productId },
         }),
       );
-      if (!getResult) {
+      if (!getResult.Item) {
         return {
           statusCode: 404,
           body: JSON.stringify({ message: "product not found" }),
@@ -55,7 +55,7 @@ export async function handler(
     // getting image from s3
     if (product.imageUrl) {
       try {
-        const urlParts = product?.imageUrl?.split("/");
+        const urlParts = product.imageUrl.split("/");
         const s3Key = urlParts.slice(3).join("/");
         await s3Client.send(
           new DeleteObjectCommand({
